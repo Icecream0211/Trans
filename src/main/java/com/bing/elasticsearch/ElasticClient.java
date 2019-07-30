@@ -14,7 +14,7 @@ import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Setting;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+//import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.search.query.QuerySearchRequest;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
@@ -27,12 +27,12 @@ import java.net.InetAddress;
  */
 public class ElasticClient {
     public static void main(String[] args) throws Exception {
-        Settings settings = Settings.builder().put("cluster.name", "elasticsearch")
+       /* Settings settings = Settings.builder().put("cluster.name", "elasticsearch")
                 .put("client.transport.sniff", true)
                 .build();
         TransportClient client = new PreBuiltTransportClient(settings)
                 .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
-
+*/
         /*IndexRequest indexRequest = new IndexRequest("car_shop","cars","1");
         indexRequest.source(XContentFactory.jsonBuilder().startObject()
                 .field("brand","宝马")
@@ -60,7 +60,7 @@ public class ElasticClient {
         IndexResponse indexResponse = future.get();
         System.out.println(indexResponse.toString());*/
 
-        BulkRequestBuilder bulkRequestBuilder = client.prepareBulk();
+       /* BulkRequestBuilder bulkRequestBuilder = client.prepareBulk();
 
         IndexRequestBuilder indexRequestBuilder = client.prepareIndex("car_shop", "sales", "3")
                 .setSource(XContentFactory.jsonBuilder()
@@ -91,7 +91,7 @@ public class ElasticClient {
         }
 
         client.close();
-
+*/
 
     }
 }
