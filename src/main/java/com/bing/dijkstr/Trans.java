@@ -64,7 +64,7 @@ public class Trans {
         Dijkstra g = new Dijkstra(verList, vertex_edgeList_map);
         //g.dijkstraTravasal(1, 3);
         //g.dijkstraTravasal(0, 4);
-        Map<String,String> routeWight = g.dijkstraTravasal(4,4);
+        Map<String, String> routeWight = g.dijkstraTravasal(4, 4);
         //Map<String,String> routeWight = g.dijkstraTravasal(2,3);
         System.out.println(routeWight.get("path"));
         System.out.println(routeWight.get("wight"));

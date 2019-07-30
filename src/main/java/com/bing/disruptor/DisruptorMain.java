@@ -15,33 +15,33 @@ public class DisruptorMain {
 
         int ringBufferSize = 32;
 
-        Disruptor<MyEvent> disruptor = new Disruptor<MyEvent>(myEventEventFactory,ringBufferSize,threadFactory);
+        Disruptor<MyEvent> disruptor = new Disruptor<MyEvent>(myEventEventFactory, ringBufferSize, threadFactory);
 
 
-         EventHandler<MyEvent> b = new MyEventHandlerB();
-         EventHandler<MyEvent> c = new MyEventHandlerC();
-         EventHandler<MyEvent> d = new MyEventHandlerD();
+        EventHandler<MyEvent> b = new MyEventHandlerB();
+        EventHandler<MyEvent> c = new MyEventHandlerC();
+        EventHandler<MyEvent> d = new MyEventHandlerD();
 
-        SequenceBarrier sequenceBarrier = disruptor.handleEventsWith(b,c).asSequenceBarrier();
+        SequenceBarrier sequenceBarrier = disruptor.handleEventsWith(b, c).asSequenceBarrier();
 
         //BatchEventProcessor processor = new BatchEventProcessor(disruptor.getRingBuffer(),sequenceBarrier,d);
         //disruptor.handleEventsWith(processor);
-        disruptor.after(b,c).handleEventsWith(d);// 此行能代替上两行的程序逻辑
+        disruptor.after(b, c).handleEventsWith(d);// 此行能代替上两行的程序逻辑
 
 
         RingBuffer<MyEvent> ringBuffer = disruptor.start();
 
-        for (int i=0;i< 10;i++){
+        for (int i = 0; i < 10; i++) {
             long sequence = ringBuffer.next();
             try {
                 MyEvent myEvent = ringBuffer.get(sequence);
                 myEvent.setValue(i);
-            }finally {
+            } finally {
                 ringBuffer.publish(sequence);
             }
             try {
                 Thread.sleep(100);
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
 

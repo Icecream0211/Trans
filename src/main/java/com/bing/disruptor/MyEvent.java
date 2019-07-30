@@ -4,7 +4,8 @@ public class MyEvent {
 
     private long value;
 
-    public MyEvent(){}
+    public MyEvent() {
+    }
 
     public long getValue() {
         return value;

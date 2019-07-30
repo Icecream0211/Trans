@@ -1,4 +1,5 @@
 package com.bing.dijkstr;
+
 /**
  * 节点
  */

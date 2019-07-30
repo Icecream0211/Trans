@@ -12,6 +12,7 @@ public class Dijkstra {
         this.vertexList = vertexList;
         this.ver_edgeList_map = ver_edgeList_map;
     }
+
     public void setRoot(Vertex v) {
         v.setParent(null);
         v.setAdjuDist(0);
@@ -51,29 +52,29 @@ public class Dijkstra {
         }
     }
 
-    public Map<String,String> dijkstraTravasal(int ...args){
+    public Map<String, String> dijkstraTravasal(int... args) {
         System.out.println(args.length);
-        if (args.length==2&&args[0]==args[1]){
+        if (args.length == 2 && args[0] == args[1]) {
             int[] newArgs = new int[3];
             newArgs = Arrays.copyOf(args, 3);
             newArgs[0] = args[0];
             int oriend = args[1];
-            int newend = oriend+1;
-            if (newend>=vertexList.size()){
-                newend = oriend-1;
+            int newend = oriend + 1;
+            if (newend >= vertexList.size()) {
+                newend = oriend - 1;
             }
             newArgs[1] = newend;
             newArgs[2] = oriend;
             args = newArgs;
         }
-        Map<String,String> finalRouteWight = new HashMap<String, String>();
-        for (int i=0;i<args.length;i++){
-            if ((i+1)<=(args.length-1)&&args[args.length-1]<=(vertexList.size()-1)){
+        Map<String, String> finalRouteWight = new HashMap<String, String>();
+        for (int i = 0; i < args.length; i++) {
+            if ((i + 1) <= (args.length - 1) && args[args.length - 1] <= (vertexList.size() - 1)) {
                 int start = args[i];
-                int end = args[i+1];
-                Map<String,String> routeWight = this.dijkstraTravasalT(start,end);
-                finalRouteWight.put("path",(finalRouteWight.get("path")==null?"":finalRouteWight.get("path"))+routeWight.get("path"));
-                finalRouteWight.put("wight",String.valueOf(Integer.valueOf(finalRouteWight.get("wight")==null?"0":finalRouteWight.get("wight"))+ Integer.valueOf(routeWight.get("wight"))));
+                int end = args[i + 1];
+                Map<String, String> routeWight = this.dijkstraTravasalT(start, end);
+                finalRouteWight.put("path", (finalRouteWight.get("path") == null ? "" : finalRouteWight.get("path")) + routeWight.get("path"));
+                finalRouteWight.put("wight", String.valueOf(Integer.valueOf(finalRouteWight.get("wight") == null ? "0" : finalRouteWight.get("wight")) + Integer.valueOf(routeWight.get("wight"))));
             }
 
         }
@@ -88,7 +89,7 @@ public class Dijkstra {
      * @param startIndex dijkstra遍历的起点节点下标
      * @param destIndex  dijkstra遍历的终点节点下标
      */
-    public Map<String,String> dijkstraTravasalT(int startIndex, int destIndex) {
+    public Map<String, String> dijkstraTravasalT(int startIndex, int destIndex) {
 
         //this.revort();
 
@@ -102,9 +103,9 @@ public class Dijkstra {
             path = "[" + dest.getParent().getName() + "] --> " + path;
             dest = dest.getParent();
         }
-        Map<String,String> routeWight = new HashMap<String, String>();
-        routeWight.put("path",path);
-        routeWight.put("wight",String.valueOf(shortest_length));
+        Map<String, String> routeWight = new HashMap<String, String>();
+        routeWight.put("path", path);
+        routeWight.put("wight", String.valueOf(shortest_length));
 
         System.out.println("[" + vertexList.get(startIndex).getName() + "] to [" +
                 vertexList.get(destIndex).getName() + "] dijkstra shortest path:: " + path);
@@ -113,7 +114,7 @@ public class Dijkstra {
     }
 
     private void revort() {
-        for (Vertex v:vertexList){
+        for (Vertex v : vertexList) {
             v.setKnown(false);
             v.setAdjuDist(0);
             v.setParent(null);
