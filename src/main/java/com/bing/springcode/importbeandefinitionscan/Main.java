@@ -1,6 +1,10 @@
 package com.bing.springcode.importbeandefinitionscan;
 
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.SpringApplicationRunListener;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 import java.io.IOException;
 
